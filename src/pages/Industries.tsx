@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout";
 import { PageHeader, SectionHeader } from "@/components/ui/section-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { CTABanner } from "@/components/ui/cta-banner";
+import { MotionSection, StaggerGrid, StaggerItem, MotionCard, AnimatedCounter } from "@/components/ui/motion";
 import { Link } from "react-router-dom";
 import { 
   Building2, 
@@ -85,65 +86,67 @@ export default function Industries() {
       {/* Industries Grid */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerGrid className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((industry, index) => (
-              <Link to={`/industries/${industry.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
-                <GlassCard className="group h-full">
-                  <div className={`mb-4 inline-flex rounded-lg bg-gradient-to-br ${industry.color} p-3 transition-transform group-hover:scale-110`}>
-                    <industry.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{industry.description}</p>
-                  <div className="mt-4 text-xs font-medium text-primary">{industry.stats}</div>
-                </GlassCard>
-              </Link>
+              <StaggerItem key={index}>
+                <Link to={`/industries/${industry.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <MotionCard>
+                    <GlassCard className="group h-full">
+                      <div className={`mb-4 inline-flex rounded-lg bg-gradient-to-br ${industry.color} p-3 transition-transform group-hover:scale-110`}>
+                        <industry.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {industry.name}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{industry.description}</p>
+                      <div className="mt-4 text-xs font-medium text-primary">{industry.stats}</div>
+                    </GlassCard>
+                  </MotionCard>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* Why Industry Expertise Matters */}
       <section className="section-padding bg-background-secondary">
         <div className="container-custom">
-          <SectionHeader
-            eyebrow="Our Approach"
-            title="Why Industry Expertise Matters"
-            description="We don't just build technology — we understand your business."
-          />
-          <div className="grid gap-8 md:grid-cols-3">
-            <GlassCard className="text-center">
-              <div className="text-4xl font-bold gradient-text">10+</div>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">Years Experience</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A decade of serving diverse industries
-              </p>
-            </GlassCard>
-            <GlassCard className="text-center">
-              <div className="text-4xl font-bold gradient-text">8</div>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">Industries Served</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Deep expertise across sectors
-              </p>
-            </GlassCard>
-            <GlassCard className="text-center">
-              <div className="text-4xl font-bold gradient-text">500+</div>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">Projects Delivered</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Proven track record of success
-              </p>
-            </GlassCard>
-          </div>
+          <MotionSection>
+            <SectionHeader
+              eyebrow="Our Approach"
+              title="Why Industry Expertise Matters"
+              description="We don't just build technology — we understand your business."
+            />
+          </MotionSection>
+          <StaggerGrid className="grid gap-8 md:grid-cols-3">
+            {[
+              { value: "10+", label: "Years Experience", desc: "A decade of serving diverse industries" },
+              { value: "8", label: "Industries Served", desc: "Deep expertise across sectors" },
+              { value: "500+", label: "Projects Delivered", desc: "Proven track record of success" },
+            ].map((stat, index) => (
+              <StaggerItem key={index}>
+                <MotionCard>
+                  <GlassCard className="text-center">
+                    <AnimatedCounter value={stat.value} className="text-4xl font-bold gradient-text" />
+                    <h3 className="mt-4 text-lg font-semibold text-foreground">{stat.label}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{stat.desc}</p>
+                  </GlassCard>
+                </MotionCard>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
         </div>
       </section>
 
-      <CTABanner
-        title="Don't See Your Industry?"
-        description="We have experience across many sectors. Let's discuss your specific needs."
-        primaryAction={{ label: "Contact Us", href: "/contact" }}
-        secondaryAction={{ label: "View Case Studies", href: "/case-studies" }}
-      />
+      <MotionSection>
+        <CTABanner
+          title="Don't See Your Industry?"
+          description="We have experience across many sectors. Let's discuss your specific needs."
+          primaryAction={{ label: "Contact Us", href: "/contact" }}
+          secondaryAction={{ label: "View Case Studies", href: "/case-studies" }}
+        />
+      </MotionSection>
     </Layout>
   );
 }

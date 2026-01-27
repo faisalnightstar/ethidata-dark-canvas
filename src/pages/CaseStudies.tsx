@@ -1,7 +1,8 @@
 import { Layout } from "@/components/layout";
-import { PageHeader, SectionHeader } from "@/components/ui/section-header";
-import { GlassCard, CaseStudyCard } from "@/components/ui/glass-card";
+import { PageHeader } from "@/components/ui/section-header";
+import { GlassCard } from "@/components/ui/glass-card";
 import { CTABanner } from "@/components/ui/cta-banner";
+import { MotionSection, StaggerGrid, StaggerItem, MotionCard } from "@/components/ui/motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -84,7 +85,7 @@ export default function CaseStudies() {
       <section className="section-padding">
         <div className="container-custom">
           {/* Filter Tabs */}
-          <div className="mb-12 flex flex-wrap justify-center gap-2">
+          <MotionSection className="mb-12 flex flex-wrap justify-center gap-2">
             {filters.map((filter) => (
               <button
                 key={filter}
@@ -99,35 +100,41 @@ export default function CaseStudies() {
                 {filter}
               </button>
             ))}
-          </div>
+          </MotionSection>
 
           {/* Case Studies Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerGrid className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredStudies.map((study, index) => (
-              <Link to={`/case-studies/${study.title.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
-                <GlassCard className="group h-full">
-                  <div className="mb-4 aspect-video rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20" />
-                  <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                    {study.industry}
-                  </span>
-                  <h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {study.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{study.client}</p>
-                  <p className="mt-3 text-sm text-muted-foreground">{study.excerpt}</p>
-                </GlassCard>
-              </Link>
+              <StaggerItem key={index}>
+                <Link to={`/case-studies/${study.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <MotionCard>
+                    <GlassCard className="group h-full">
+                      <div className="mb-4 aspect-video rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20" />
+                      <span className="text-xs font-medium uppercase tracking-wider text-primary">
+                        {study.industry}
+                      </span>
+                      <h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {study.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{study.client}</p>
+                      <p className="mt-3 text-sm text-muted-foreground">{study.excerpt}</p>
+                    </GlassCard>
+                  </MotionCard>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
-      <CTABanner
-        title="Ready to Be Our Next Success Story?"
-        description="Let's discuss how we can help transform your business."
-        primaryAction={{ label: "Start a Conversation", href: "/contact" }}
-        secondaryAction={{ label: "View Our Services", href: "/services" }}
-      />
+      <MotionSection>
+        <CTABanner
+          title="Ready to Be Our Next Success Story?"
+          description="Let's discuss how we can help transform your business."
+          primaryAction={{ label: "Start a Conversation", href: "/contact" }}
+          secondaryAction={{ label: "View Our Services", href: "/services" }}
+        />
+      </MotionSection>
     </Layout>
   );
 }
