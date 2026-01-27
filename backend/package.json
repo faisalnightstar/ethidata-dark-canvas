@@ -2,6 +2,7 @@
   "name": "ethidata-backend",
   "version": "1.0.0",
   "description": "Backend API for Ethidata website",
+  "type": "module",
   "main": "dist/app.js",
   "scripts": {
     "dev": "tsx watch src/app.ts",
