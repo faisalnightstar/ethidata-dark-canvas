@@ -57,8 +57,8 @@ export default function Index() {
               </div>
             </HeroItem>
           </HeroStagger>
-          <div className="relative bottom-8 left-1/2 -translate-x-1/2 mt-32">
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 mt-64 scroll-indicator text-muted-foreground"><ChevronDown className="h-10 w-10" /></div>
+          <div className="relative bottom-8 left-1/2 -translate-x-1/2 mt-32 flex justify-center items-center">
+            <div className="absolute text-muted-foreground scroll-indicator"><ChevronDown className="h-10 w-10" /></div>
           </div>
         </div>
       </section>
