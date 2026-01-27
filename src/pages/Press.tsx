@@ -22,7 +22,7 @@ const pressReleases = [
     excerpt: "New comprehensive security solution for enterprise organizations.",
   },
   {
-    title: "EthiData Opens New Office in Singapore",
+    title: "EthiData Opens New Office in Bangalore, IN",
     date: "October 20, 2023",
     excerpt: "Expansion to serve growing demand in Asia-Pacific region.",
   },
@@ -168,7 +168,7 @@ export default function Press() {
                 press@ethidata.com
               </a>
               <span className="hidden sm:inline text-muted-foreground">•</span>
-              <span className="text-lg text-muted-foreground">+1 (234) 567-890</span>
+              <span className="text-lg text-muted-foreground">+91-8285961002</span>
             </div>
           </GlassCard>
         </div>

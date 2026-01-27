@@ -21,7 +21,7 @@ const upcomingEvents = [
     date: "Mar 20-22, 2024",
     time: "9:00 AM - 5:00 PM",
     description: "Our annual conference bringing together cloud architects and engineers.",
-    location: "San Francisco, CA",
+    location: "Greater Noida, IN",
     virtual: false,
   },
   {

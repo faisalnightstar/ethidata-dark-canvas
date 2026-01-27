@@ -15,7 +15,7 @@ const stats = [
 
 const timeline = [
   { year: "2012", title: "Founded", description: "EthiData established in San Francisco" },
-  { year: "2015", title: "Global Expansion", description: "Opened offices in London and Singapore" },
+  { year: "2015", title: "Global Expansion", description: "Opened offices in London and Bangalore, IN" },
   { year: "2018", title: "AI Division", description: "Launched dedicated AI & ML practice" },
   { year: "2021", title: "500th Project", description: "Celebrated 500th successful project delivery" },
   { year: "2024", title: "Today", description: "Leading enterprise technology innovation" },
@@ -67,17 +67,17 @@ export default function About() {
               />
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  EthiData & Technologies was born from a vision: to bridge the gap between 
-                  cutting-edge technology and enterprise needs. Founded in 2012 by a team 
+                  EthiData & Technologies was born from a vision: to bridge the gap between
+                  cutting-edge technology and enterprise needs. Founded in 2012 by a team
                   of engineers who believed in doing things differently.
                 </p>
                 <p>
-                  What started as a small consulting firm has grown into a global technology 
+                  What started as a small consulting firm has grown into a global technology
                   partner, serving Fortune 500 companies and innovative startups alike.
                 </p>
                 <p>
-                  Our secret? We never stopped learning, never stopped innovating, and never 
-                  compromised on quality. Today, we're proud to lead the industry in 
+                  Our secret? We never stopped learning, never stopped innovating, and never
+                  compromised on quality. Today, we're proud to lead the industry in
                   enterprise technology solutions.
                 </p>
               </div>
@@ -106,9 +106,8 @@ export default function About() {
               {timeline.map((item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col md:flex-row gap-8 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className={`flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
                 >
                   <div className="flex-1 md:text-right">
                     {index % 2 === 0 && (
@@ -148,8 +147,8 @@ export default function About() {
               </div>
               <h3 className="text-2xl font-bold text-foreground">Our Mission</h3>
               <p className="mt-4 text-muted-foreground">
-                To empower enterprises with innovative technology solutions that drive 
-                transformation, efficiency, and sustainable growth in an ever-evolving 
+                To empower enterprises with innovative technology solutions that drive
+                transformation, efficiency, and sustainable growth in an ever-evolving
                 digital landscape.
               </p>
             </GlassCard>
@@ -159,8 +158,8 @@ export default function About() {
               </div>
               <h3 className="text-2xl font-bold text-foreground">Our Vision</h3>
               <p className="mt-4 text-muted-foreground">
-                To be the global leader in enterprise technology innovation, setting 
-                the standard for excellence, ethics, and impact in every solution 
+                To be the global leader in enterprise technology innovation, setting
+                the standard for excellence, ethics, and impact in every solution
                 we deliver.
               </p>
             </GlassCard>

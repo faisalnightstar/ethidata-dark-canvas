@@ -4,12 +4,12 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { GlassCard, ServiceCard, StatCard, TestimonialCard, CaseStudyCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
 import { CTABanner } from "@/components/ui/cta-banner";
-import { 
-  Code2, 
-  Cloud, 
-  Shield, 
-  Cpu, 
-  BarChart3, 
+import {
+  Code2,
+  Cloud,
+  Shield,
+  Cpu,
+  BarChart3,
   Zap,
   ArrowRight,
   ChevronDown
@@ -49,15 +49,15 @@ const services = [
 ];
 
 const stats = [
-  { value: "500+", label: "Projects Delivered" },
+  { value: "261+", label: "Projects Delivered" },
   { value: "98%", label: "Client Satisfaction" },
-  { value: "150+", label: "Team Members" },
-  { value: "12+", label: "Years Experience" },
+  { value: "20+", label: "Team Members" },
+  { value: "5+", label: "Years Experience" },
 ];
 
 const testimonials = [
   {
-    quote: "EthiData transformed our entire infrastructure. Their expertise in cloud architecture saved us 40% on operational costs.",
+    quote: "EDT transformed our entire infrastructure. Their expertise in cloud architecture saved us 40% on operational costs.",
     author: "Sarah Chen",
     role: "CTO",
     company: "TechFlow Inc",
@@ -69,7 +69,7 @@ const testimonials = [
     company: "DataStream",
   },
   {
-    quote: "Professional, innovative, and reliable. EthiData is our go-to partner for all technology initiatives.",
+    quote: "Professional, innovative, and reliable. EDT is our go-to partner for all technology initiatives.",
     author: "Emily Watson",
     role: "CEO",
     company: "Nexus Systems",
@@ -78,16 +78,19 @@ const testimonials = [
 
 const caseStudies = [
   {
+    image: "/images/case-studies/global-financial-corp.png",
     title: "Cloud Migration for Fortune 500",
     client: "Global Financial Corp",
     industry: "Finance",
   },
   {
+    image: "/images/case-studies/retailmax.png",
     title: "AI-Powered Customer Analytics",
     client: "RetailMax",
     industry: "Retail",
   },
   {
+    image: "/images/case-studies/healthfirst.png",
     title: "Cybersecurity Overhaul",
     client: "HealthFirst",
     industry: "Healthcare",
@@ -106,7 +109,7 @@ export default function Index() {
         {/* Background effects */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-secondary/10 blur-3xl gradient-secondary" />
         </div>
 
         <div className="container-custom relative z-10">
@@ -120,7 +123,7 @@ export default function Index() {
               of Technology
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              We partner with enterprises to design, build, and scale transformative 
+              We partner with enterprises to design, build, and scale transformative
               technology solutions that drive innovation and growth.
             </p>
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
@@ -134,9 +137,9 @@ export default function Index() {
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-            <div className="scroll-indicator text-muted-foreground">
-              <ChevronDown className="h-6 w-6" />
+          <div className="relative bottom-8 left-1/2 -translate-x-1/2 mt-32 ">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 mt-64 scroll-indicator text-muted-foreground">
+              <ChevronDown className="h-10 w-10" />
             </div>
           </div>
         </div>
@@ -182,18 +185,18 @@ export default function Index() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <SectionHeader
-                eyebrow="About EthiData"
+                eyebrow="About EDT"
                 title="Technology Partners You Can Trust"
                 description="For over a decade, we've been at the forefront of enterprise technology innovation."
                 centered={false}
               />
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  EthiData & Technologies was founded with a simple mission: to help 
+                  EthiData & Technologies (formerly known as PairUp Labs) was founded with a simple mission: to help
                   enterprises harness the power of technology to achieve their goals.
                 </p>
                 <p>
-                  Our team of world-class engineers, architects, and strategists work 
+                  Our team of world-class engineers, architects, and strategists work
                   together to deliver solutions that make a real impact.
                 </p>
               </div>

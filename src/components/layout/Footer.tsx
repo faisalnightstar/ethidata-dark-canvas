@@ -26,20 +26,20 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "LinkedIn", href: "#", icon: Linkedin },
-  { name: "Twitter", href: "#", icon: Twitter },
-  { name: "GitHub", href: "#", icon: Github },
-  { name: "YouTube", href: "#", icon: Youtube },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/ethidata-and-technologies/", icon: Linkedin },
+  { name: "Twitter", href: "https://x.com/ethidata", icon: Twitter },
+  { name: "GitHub", href: "https://github.com/ethidata", icon: Github },
+  { name: "YouTube", href: "https://www.youtube.com/@ethidata", icon: Youtube },
 ];
 
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-card">
       {/* Main Footer */}
-      <div className="container-custom py-16">
-        <div className="grid gap-12 lg:grid-cols-5">
+      <div className="container-custom py-16 text-center md:text-left">
+        <div className="flex gap-12 flex-wrap justify-center md:flex-nowrap text-left md:text-left">
           {/* Brand Column */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 ">
             <Link to="/" className="inline-block">
               <span className="text-2xl font-bold tracking-tight">
                 <span className="gradient-text">ETHI</span>
@@ -47,29 +47,29 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-muted-foreground">
-              Empowering enterprises with cutting-edge technology solutions. 
+              Empowering enterprises with cutting-edge technology solutions.
               Building the future, one innovation at a time.
             </p>
 
             {/* Contact Info */}
             <div className="mt-6 space-y-3">
               <a
-                href="mailto:hello@ethidata.com"
+                href="mailto:abufaisal@ethicodes.com"
                 className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
               >
                 <Mail className="h-4 w-4" />
-                hello@ethidata.com
+                abufaisal@ethicodes.com
               </a>
               <a
                 href="tel:+1234567890"
                 className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
               >
                 <Phone className="h-4 w-4" />
-                +1 (234) 567-890
+                +91 82859-61002
               </a>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                San Francisco, CA
+                Greater Noida, India
               </div>
             </div>
 
@@ -81,6 +81,8 @@ export function Footer() {
                   href={social.href}
                   className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:shadow-glow-sm"
                   aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -89,7 +91,7 @@ export function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div>
+          <div className="">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Company
             </h3>
@@ -107,7 +109,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Services
             </h3>
@@ -125,7 +127,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Resources
             </h3>

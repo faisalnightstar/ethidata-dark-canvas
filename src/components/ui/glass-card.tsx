@@ -115,7 +115,7 @@ interface CaseStudyCardProps {
 
 export function CaseStudyCard({ title, client, industry, image, className }: CaseStudyCardProps) {
   return (
-    <div className={cn("group relative overflow-hidden rounded-xl", className)}>
+    <div className={cn("group relative overflow-hidden rounded-xl bg-red-800/10", className)}>
       <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20">
         {image && (
           <img src={image} alt={title} className="h-full w-full object-cover" />

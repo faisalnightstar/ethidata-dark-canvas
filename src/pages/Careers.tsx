@@ -4,12 +4,12 @@ import { GlassCard, JobCard, StatCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
 import { CTABanner } from "@/components/ui/cta-banner";
 import { Link } from "react-router-dom";
-import { 
-  Heart, 
-  Zap, 
-  Users, 
-  GraduationCap, 
-  Coffee, 
+import {
+  Heart,
+  Zap,
+  Users,
+  GraduationCap,
+  Coffee,
   Plane,
   DollarSign,
   Clock,
@@ -41,7 +41,7 @@ const benefits = [
 
 const openPositions = [
   { title: "Senior Software Engineer", department: "Engineering", location: "Remote", type: "Full-time" },
-  { title: "Cloud Architect", department: "Engineering", location: "San Francisco, CA", type: "Full-time" },
+  { title: "Cloud Architect", department: "Engineering", location: "Greater Noida, IN", type: "Full-time" },
   { title: "Product Designer", department: "Design", location: "Remote", type: "Full-time" },
   { title: "Data Scientist", department: "AI & ML", location: "Remote", type: "Full-time" },
 ];

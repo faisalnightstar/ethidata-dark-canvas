@@ -7,7 +7,7 @@ import { useParams, Link } from "react-router-dom";
 import { Code2, CheckCircle, ArrowRight } from "lucide-react";
 
 const serviceData = {
-  title: "Custom Software Development",
+  title: "Software Development",
   description: "End-to-end software solutions tailored to your unique business requirements. From concept to deployment, we build applications that scale.",
   problem: "Many enterprises struggle with outdated software that can't keep pace with modern business demands. Off-the-shelf solutions often fall short of specific requirements, leading to inefficiencies and missed opportunities.",
   solution: "We build custom software solutions that align perfectly with your business processes. Our team of experienced engineers works closely with you to understand your needs and deliver applications that drive real value.",

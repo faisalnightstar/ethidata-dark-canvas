@@ -8,20 +8,20 @@ import { Link } from "react-router-dom";
 import { Search, MapPin, Briefcase } from "lucide-react";
 
 const departments = ["All", "Engineering", "Design", "AI & ML", "DevOps", "Sales", "Operations"];
-const locations = ["All Locations", "Remote", "San Francisco, CA", "New York, NY", "London, UK", "Singapore"];
+const locations = ["All Locations", "Remote", "Greater Noida, IN", "Noida, IN", "Dubai, UAE", "Bangalore, IN"];
 
 const jobs = [
   { title: "Senior Software Engineer", department: "Engineering", location: "Remote", type: "Full-time", deadline: "Feb 28, 2024" },
-  { title: "Cloud Architect", department: "Engineering", location: "San Francisco, CA", type: "Full-time", deadline: "Mar 15, 2024" },
+  { title: "Cloud Architect", department: "Engineering", location: "Greater Noida, IN", type: "Full-time", deadline: "Mar 15, 2024" },
   { title: "Product Designer", department: "Design", location: "Remote", type: "Full-time", deadline: "Mar 1, 2024" },
   { title: "Data Scientist", department: "AI & ML", location: "Remote", type: "Full-time", deadline: "Mar 10, 2024" },
-  { title: "DevOps Engineer", department: "DevOps", location: "New York, NY", type: "Full-time", deadline: "Feb 25, 2024" },
+  { title: "DevOps Engineer", department: "DevOps", location: "Noida, IN", type: "Full-time", deadline: "Feb 25, 2024" },
   { title: "ML Engineer", department: "AI & ML", location: "Remote", type: "Full-time", deadline: "Mar 20, 2024" },
-  { title: "UX Researcher", department: "Design", location: "San Francisco, CA", type: "Full-time", deadline: "Mar 5, 2024" },
-  { title: "Account Executive", department: "Sales", location: "New York, NY", type: "Full-time", deadline: "Feb 20, 2024" },
+  { title: "UX Researcher", department: "Design", location: "Greater Noida, IN", type: "Full-time", deadline: "Mar 5, 2024" },
+  { title: "Account Executive", department: "Sales", location: "Noida, IN", type: "Full-time", deadline: "Feb 20, 2024" },
   { title: "Site Reliability Engineer", department: "DevOps", location: "Remote", type: "Full-time", deadline: "Mar 12, 2024" },
-  { title: "Frontend Engineer", department: "Engineering", location: "London, UK", type: "Full-time", deadline: "Mar 8, 2024" },
-  { title: "Operations Manager", department: "Operations", location: "Singapore", type: "Full-time", deadline: "Mar 15, 2024" },
+  { title: "Frontend Engineer", department: "Engineering", location: "Dubai, UAE", type: "Full-time", deadline: "Mar 8, 2024" },
+  { title: "Operations Manager", department: "Operations", location: "Bangalore, IN", type: "Full-time", deadline: "Mar 15, 2024" },
   { title: "Backend Engineer", department: "Engineering", location: "Remote", type: "Full-time", deadline: "Mar 1, 2024" },
 ];
 
@@ -34,7 +34,7 @@ export default function Jobs() {
     const matchesDepartment = activeDepartment === "All" || job.department === activeDepartment;
     const matchesLocation = activeLocation === "All Locations" || job.location === activeLocation;
     const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          job.department.toLowerCase().includes(searchQuery.toLowerCase());
+      job.department.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesDepartment && matchesLocation && matchesSearch;
   });
 
