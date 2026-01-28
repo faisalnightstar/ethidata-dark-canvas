@@ -11,6 +11,7 @@ export const submitContact = async (
 ): Promise<void> => {
   try {
     const { name, email, company, subject, message } = req.body;
+    console.log(req.body);
 
     // Create contact submission
     const contact = await Contact.create({
@@ -49,6 +50,7 @@ export const submitContact = async (
     });
   } catch (error) {
     next(error);
+    console.log(error);
   }
 };
 

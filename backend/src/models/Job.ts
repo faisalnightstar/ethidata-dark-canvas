@@ -77,7 +77,6 @@ const jobSchema = new Schema<IJob>(
 );
 
 // Indexes
-jobSchema.index({ slug: 1 });
 jobSchema.index({ isActive: 1, department: 1 });
 jobSchema.index({ isActive: 1, location: 1 });
 

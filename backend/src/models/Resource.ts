@@ -90,7 +90,6 @@ const resourceDownloadSchema = new Schema<IResourceDownload>(
 );
 
 // Indexes
-resourceSchema.index({ slug: 1 });
 resourceSchema.index({ type: 1 });
 resourceDownloadSchema.index({ resourceId: 1, email: 1 });
 resourceDownloadSchema.index({ email: 1 });

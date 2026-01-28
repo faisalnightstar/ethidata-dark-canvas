@@ -74,7 +74,6 @@ const blogPostSchema = new Schema<IBlogPost>(
 );
 
 // Indexes
-blogPostSchema.index({ slug: 1 });
 blogPostSchema.index({ isPublished: 1, publishedAt: -1 });
 blogPostSchema.index({ category: 1, isPublished: 1 });
 blogPostSchema.index({ tags: 1 });

@@ -86,7 +86,6 @@ const eventSchema = new Schema<IEvent>(
 );
 
 // Indexes
-eventSchema.index({ slug: 1 });
 eventSchema.index({ isActive: 1, date: 1 });
 eventSchema.index({ type: 1, isActive: 1 });
 
