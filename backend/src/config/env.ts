@@ -12,7 +12,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 export const env = {
   port: parseInt(process.env.PORT || '5000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
-  mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/ethidata',
+  mongodbUri: process.env.MONGODB_URI || 'mongodb://admin:faisal@mongo:27017/ethidata?authSource=admin',
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
   smtp: {
     host: process.env.SMTP_HOST || '',
