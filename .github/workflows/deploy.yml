@@ -15,48 +15,34 @@ jobs:
 
       - name: Set up SSH key
         run: |
-          set -euo pipefail
-          install -m 700 -d ~/.ssh
-          # Avoid CRLF issues from secrets copy/paste
-          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' > ~/.ssh/ethidata_deploy_key
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ethidata_deploy_key
           chmod 600 ~/.ssh/ethidata_deploy_key
 
       - name: Add server to known_hosts
         run: |
-          set -euo pipefail
-          touch ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to EC2
         run: |
-          set -euo pipefail
-          ssh \
-            -o BatchMode=yes \
-            -o StrictHostKeyChecking=yes \
-            -o UserKnownHostsFile=~/.ssh/known_hosts \
-            -i ~/.ssh/ethidata_deploy_key \
-            ubuntu@${{ secrets.EC2_HOST }} \
-            'bash -se' << 'EOF'
-          set -euo pipefail
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ethidata_deploy_key ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+echo "Pulling latest changes..."
+cd /var/www/ethidata/ethidata-dark-canvas
 
-          echo "Pulling latest changes..."
-          cd /var/www/ethidata/ethidata-dark-canvas
+git reset --hard
+git pull origin main
 
-          git reset --hard
-          git pull origin main
+echo "Rebuilding backend and frontend images..."
+docker compose -f docker-compose.prod.yml build
 
-          echo "Rebuilding backend and frontend images..."
-          docker compose -f docker-compose.prod.yml build
+echo "Restarting services..."
+docker compose -f docker-compose.prod.yml up -d
 
-          echo "Restarting services..."
-          docker compose -f docker-compose.prod.yml up -d
+echo "Cleaning up unused images..."
+docker image prune -f
 
-          echo "Cleaning up unused images..."
-          docker image prune -f
+echo "Reload Nginx"
+sudo systemctl reload nginx
 
-          echo "Reload Nginx"
-          sudo systemctl reload nginx
-
-          echo "Deployment successful!"
-          EOF
+echo "Deployment successful!"
+EOF
