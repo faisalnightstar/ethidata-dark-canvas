@@ -1,0 +1,50 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ethidata_deploy_key
+          chmod 600 ~/.ssh/ethidata_deploy_key
+
+      - name: Add server to known_hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ethidata_deploy_key \
+            ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+            
+            echo "Pulling latest changes..."
+            cd /var/www/ethidata/ethidata-dark-canvas
+
+            git reset --hard
+            git pull origin main
+            
+            echo "Rebuilding backend and frontend images..."
+            docker compose -f docker-compose.prod.yml build
+
+            echo "Restarting services..."
+            docker compose -f docker-compose.prod.yml up -d
+
+            echo "Cleaning up unused images..."
+            docker image prune -f
+
+            echo "Reload Nginx"
+            sudo systemctl reload nginx
+
+            echo "Deployment successful!"
+            EOF
