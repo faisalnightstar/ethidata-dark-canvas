@@ -1,22 +1,17 @@
 FROM node:18-alpine AS build
 WORKDIR /app
 
-# Copy env FIRST
 COPY .env .env
-
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 RUN npm run build
 
-# ----------- FINAL IMAGE -----------
 FROM node:18-alpine
 WORKDIR /app
 
-# Copy env again into runtime image
 COPY .env .env
-
 COPY package*.json ./
 RUN npm install --production
 

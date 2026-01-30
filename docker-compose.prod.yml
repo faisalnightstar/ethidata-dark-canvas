@@ -1,47 +1,19 @@
-version: "3.9"
-
 services:
-  mongo:
-    image: mongo
-    container_name: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: faisal
-    volumes:
-      - ./mongo/data:/data/db
-
-  backend:
-    build: ./backend
-    container_name: backend
-    restart: always
-    environment:
-      - MONGODB_URI=mongodb://admin:faisal@mongo:27017/ethidata?authSource=admin
-    depends_on:
-      - mongo
-
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: frontend
     restart: always
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./certbot/www:/var/www/certbot
-      - ./certbot/conf:/etc/letsencrypt
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    environment:
+      - NODE_ENV=production
     ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - backend
-      - frontend
+      - "5001:5001"
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot

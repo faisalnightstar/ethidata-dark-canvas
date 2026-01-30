@@ -18,10 +18,22 @@ const app = express();
 // Security middleware
 app.use(helmet());
 
-// CORS configuration
+
+// CORS configuration (supports multiple domains)
+const allowedOrigins = env.frontendUrl.split(',').map(o => o.trim());
+
 app.use(
   cors({
-    origin: env.frontendUrl,
+    origin: (origin, callback) => {
+      // Allow server-to-server or tools like curl (no origin)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked: ${origin} not allowed`));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -54,9 +66,9 @@ const startServer = async () => {
     await connectDatabase();
 
     // Start listening
-    app.listen(env.port, () => {
+    app.listen(env.port,"0.0.0.0", () => {
       console.log(`
-🚀 Server is running!
+🚀 Server is running! on ${env.port}
 📍 Environment: ${env.nodeEnv}
 🔗 API URL: http://localhost:${env.port}/api
 🩺 Health check: http://localhost:${env.port}/api/health
