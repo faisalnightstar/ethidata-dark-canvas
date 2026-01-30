@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"
 
 // Pages
 import Index from "./pages/Index";
@@ -37,6 +38,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
+      <Analytics />
       <Sonner />
       <BrowserRouter>
         <Routes>
@@ -45,41 +47,41 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* Services */}
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
-          
+
           {/* Industries */}
           <Route path="/industries" element={<Industries />} />
           <Route path="/industries/:slug" element={<IndustryDetail />} />
-          
+
           {/* Case Studies */}
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
-          
+
           {/* Products */}
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/pricing" element={<Pricing />} />
-          
+
           {/* Content */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/events" element={<Events />} />
           <Route path="/press" element={<Press />} />
-          
+
           {/* Careers */}
           <Route path="/careers" element={<Careers />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/:slug" element={<JobDetail />} />
           <Route path="/apply" element={<ApplicationSuccess />} />
-          
+
           {/* Other */}
           <Route path="/partnerships" element={<Partnerships />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          
+
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

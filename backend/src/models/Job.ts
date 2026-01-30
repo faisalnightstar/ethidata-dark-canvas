@@ -63,7 +63,7 @@ const jobSchema = new Schema<IJob>(
       max: Number,
       currency: {
         type: String,
-        default: 'USD',
+        default: 'INR',
       },
     },
     isActive: {

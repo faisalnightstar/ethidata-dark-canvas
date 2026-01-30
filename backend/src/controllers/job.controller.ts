@@ -10,6 +10,7 @@ export const getJobs = async (
 ): Promise<void> => {
   try {
     const { department, location, type, search } = req.query;
+    console.log("req.query", req.query);
 
     const query: Record<string, unknown> = { isActive: true };
 

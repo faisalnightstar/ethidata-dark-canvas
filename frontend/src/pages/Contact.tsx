@@ -4,6 +4,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { GlowButton } from "@/components/ui/glow-button";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { useState } from "react";
+import axios from "axios";
 
 const contactInfo = [
   {
@@ -41,11 +42,12 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Form submission logic would go here
-
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/contact`, formData);
     console.log("Form submitted:", formData);
+    console.log("Response:", response);
   };
 
   return (
