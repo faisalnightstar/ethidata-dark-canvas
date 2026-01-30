@@ -1,21 +1,36 @@
-FROM node:18-alpine AS build
+# ──────────────────────────────────────────
+# 1) Build Stage
+# ──────────────────────────────────────────
+FROM node:20-alpine AS build
 WORKDIR /app
 
-COPY .env .env
+# Copy package files only (cache layer)
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
+# Copy source code only AFTER deps installed
 COPY . .
+
+# Build TypeScript → dist
 RUN npm run build
 
-FROM node:18-alpine
+
+# ──────────────────────────────────────────
+# 2) Production Stage
+# ──────────────────────────────────────────
+FROM node:20-alpine AS prod
 WORKDIR /app
 
-COPY .env .env
+# Copy only prod deps
 COPY package*.json ./
-RUN npm install --production
+RUN npm ci --omit=dev
 
+# Copy built final output from stage 1
 COPY --from=build /app/dist ./dist
+
+# Set a non-root user (security)
+RUN addgroup -S nodegroup && adduser -S nodeuser -G nodegroup
+USER nodeuser
 
 EXPOSE 5001
 CMD ["node", "dist/app.js"]
