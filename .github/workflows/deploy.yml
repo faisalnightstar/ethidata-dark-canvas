@@ -25,24 +25,33 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ethidata_deploy_key ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-echo "Pulling latest changes..."
-cd /var/www/ethidata/ethidata-dark-canvas
+          set -euo pipefail
+          ssh \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -i ~/.ssh/ethidata_deploy_key \
+            ubuntu@${{ secrets.EC2_HOST }} \
+            'bash -se' << 'EOF'
+          set -euo pipefail
 
-git reset --hard
-git pull origin main
+          echo "Pulling latest changes..."
+          cd /var/www/ethidata/ethidata-dark-canvas
 
-echo "Rebuilding backend and frontend images..."
-docker compose -f docker-compose.prod.yml build
+          git reset --hard
+          git pull origin main
 
-echo "Restarting services..."
-docker compose -f docker-compose.prod.yml up -d
+          echo "Rebuilding backend and frontend images..."
+          docker compose -f docker-compose.prod.yml build
 
-echo "Cleaning up unused images..."
-docker image prune -f
+          echo "Restarting services..."
+          docker compose -f docker-compose.prod.yml up -d
 
-echo "Reload Nginx"
-sudo systemctl reload nginx
+          echo "Cleaning up unused images..."
+          docker image prune -f
 
-echo "Deployment successful!"
-EOF
+          echo "Reload Nginx"
+          sudo systemctl reload nginx
+
+          echo "Deployment successful!"
+          EOF
