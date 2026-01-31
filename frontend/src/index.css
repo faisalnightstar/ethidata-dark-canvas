@@ -49,11 +49,11 @@
     --glow-green: 156 100% 50%;
     --glass-bg: 0 0% 100% / 0.03;
     --glass-border: 0 0% 100% / 0.1;
-    
+
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(186 100% 49%), hsl(156 100% 50%));
-    --gradient-glow: linear-gradient(135deg, hsl(186 100% 49% / 0.2), hsl(156 100% 50% / 0.2));
-    
+    --gradient-primary: linear-gradient(135deg, hsl(186 100% 49%), hsl(230 89% 37%));
+    --gradient-glow: linear-gradient(135deg, hsl(186 100% 49% / 0.2), hsl(190 75% 84% / 0.2));
+
     /* Shadows */
     --shadow-glow-sm: 0 0 20px hsl(186 100% 49% / 0.3);
     --shadow-glow-md: 0 0 40px hsl(186 100% 49% / 0.4);
@@ -93,6 +93,7 @@
 }
 
 @layer components {
+
   /* Glass Card Effect */
   .glass-card {
     @apply relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
@@ -187,22 +188,28 @@
 
   /* Animated gradient background */
   .animated-gradient {
-    background: linear-gradient(
-      135deg,
-      hsl(0 0% 0%) 0%,
-      hsl(186 100% 49% / 0.1) 25%,
-      hsl(156 100% 50% / 0.1) 50%,
-      hsl(186 100% 49% / 0.05) 75%,
-      hsl(0 0% 0%) 100%
-    );
+    background: linear-gradient(135deg,
+        hsl(0 0% 0%) 0%,
+        hsl(186 100% 49% / 0.1) 25%,
+        hsl(156 100% 50% / 0.1) 50%,
+        hsl(186 100% 49% / 0.05) 75%,
+        hsl(0 0% 0%) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
   }
 
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   /* Card hover lift */
@@ -217,7 +224,7 @@
 
   /* Tech pattern overlay */
   .tech-pattern {
-    background-image: 
+    background-image:
       radial-gradient(circle at 25% 25%, hsl(186 100% 49% / 0.03) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, hsl(156 100% 50% / 0.03) 0%, transparent 50%);
   }
@@ -229,6 +236,7 @@
 }
 
 @layer utilities {
+
   /* Fade in animation */
   .fade-in {
     animation: fadeIn 0.6s ease-out forwards;
@@ -239,6 +247,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -246,17 +255,34 @@
   }
 
   /* Stagger children animation */
-  .stagger-children > * {
+  .stagger-children>* {
     opacity: 0;
     animation: fadeIn 0.5s ease-out forwards;
   }
 
-  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-  .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-children>*:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-children>*:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-children>*:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-children>*:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-children>*:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  .stagger-children>*:nth-child(6) {
+    animation-delay: 0.6s;
+  }
 
   /* Glow pulse */
   .glow-pulse {
@@ -264,9 +290,12 @@
   }
 
   @keyframes glowPulse {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 20px hsl(186 100% 49% / 0.3);
     }
+
     50% {
       box-shadow: 0 0 40px hsl(186 100% 49% / 0.5), 0 0 60px hsl(156 100% 50% / 0.3);
     }
@@ -278,8 +307,15 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   /* Scroll indicator */
@@ -288,7 +324,14 @@
   }
 
   @keyframes scrollBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
   }
 }

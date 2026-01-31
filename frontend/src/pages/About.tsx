@@ -7,17 +7,38 @@ import { Target, Eye, Heart, Users, Lightbulb, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const stats = [
-  { value: "2024", label: "Year Founded" },
-  { value: "20+", label: "Team Members" },
-  { value: "100+", label: "Projects Completed" },
-  { value: "10+", label: "Countries Served" },
+  { value: "Established 2022", label: "Inception" },
+  { value: "20+", label: "Core Technology Specialists" },
+  { value: "100+", label: "Deliverables Completed" },
+  { value: "10+", label: "Global Deployment Footprint" },
 ];
 
 const timeline = [
-  { year: "2024", title: "Founded", description: "EthiData & Technologies established in Greater Noida" },
-  { year: "2025", title: "AI Division", description: "Launched dedicated AI & ML practice" },
-  { year: "2025", title: "100th Project", description: "Celebrated 100th successful project delivery" },
-  { year: "2026", title: "Today", description: "Leading enterprise technology innovation" },
+  {
+    year: "2022",
+    title: "Company Inception",
+    description: "Initiated foundational operations as an independent development agency."
+  },
+  {
+    year: "2023",
+    title: "Operational Acceleration",
+    description: "Expanded project portfolio, establishing sustained industry engagement."
+  },
+  {
+    year: "2025",
+    title: "Private Limited Incorporation",
+    description: "Formally registered as EthiData & Technologies Pvt. Ltd., reflecting operational maturity."
+  },
+  {
+    year: "2025",
+    title: "100th Project Milestone",
+    description: "Achieved delivery of the 100th client engagement with consistent quality standards."
+  },
+  {
+    year: "Present",
+    title: "Current Leadership Phase",
+    description: "Continuing expansion of enterprise technology solutions and SaaS product portfolio."
+  },
 ];
 
 const values = [
@@ -84,7 +105,7 @@ export default function About() {
             <div className="relative">
               <GlassCard className="p-0 overflow-hidden" glow>
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <span className="text-6xl font-bold gradient-text">ETHIDATA</span>
+                  <img src="/brand/hfboard.jpeg" className="text-6xl font-bold gradient-text" />
                 </div>
               </GlassCard>
             </div>

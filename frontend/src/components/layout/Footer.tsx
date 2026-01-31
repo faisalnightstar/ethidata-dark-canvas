@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Youtube } from "lucide-react";
+import { useState } from "react";
 
 const footerLinks = {
   company: [
@@ -32,7 +33,12 @@ const socialLinks = [
   { name: "YouTube", href: "https://www.youtube.com/@ethidata", icon: Youtube },
 ];
 
-export function Footer() {
+export const Footer = () => {
+  const [subscribeData, setSubscribeData] = useState("")
+  console.log(subscribeData)
+  const handleSubscribe = () => {
+    console.log(subscribeData)
+  }
   return (
     <footer className="border-t border-white/10 bg-card">
       {/* Main Footer */}
@@ -157,10 +163,12 @@ export function Footer() {
                 Get the latest news and insights delivered to your inbox.
               </p>
             </div>
-            <form className="flex w-full max-w-md gap-3">
+            <form onSubmit={handleSubscribe} className="flex w-full max-w-md gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={subscribeData}
+                onChange={(e) => setSubscribeData(e.target.value)}
                 className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
               <button

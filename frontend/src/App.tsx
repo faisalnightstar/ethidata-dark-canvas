@@ -41,7 +41,7 @@ const App = () => (
       <Toaster />
       <Analytics />
       <SpeedInsights />
-      <Sonner />
+      <Sonner position="top-center" />
       <BrowserRouter>
         <Routes>
           {/* Core Pages */}

@@ -60,9 +60,13 @@ export function Header() {
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold tracking-tight">
-              <span className="gradient-text">ETHI</span>
-              <span className="text-foreground">DATA</span>
+            <span className="flex flex-row items-center">
+              <span className="md:h-6 md:w-24 mr-2"><img className="h-4 w-12 md:h-6 md:w-24" src="/brand/edt-logo-nobg.png" alt="" /></span>
+              <span className="text-md md:text-2xl font-bold tracking-tight">
+                <span className="gradient-text">Ethi</span>
+                <span className="text-foreground">Data</span>
+                <span className="text-foreground"> & Technologies</span>
+              </span>
             </span>
           </Link>
 
