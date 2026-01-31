@@ -4,12 +4,12 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { CTABanner } from "@/components/ui/cta-banner";
 import { MotionSection, StaggerGrid, StaggerItem, MotionCard, AnimatedCounter } from "@/components/ui/motion";
 import { Link } from "react-router-dom";
-import { 
-  Building2, 
-  HeartPulse, 
-  ShoppingCart, 
-  Landmark, 
-  Factory, 
+import {
+  Building2,
+  HeartPulse,
+  ShoppingCart,
+  Landmark,
+  Factory,
   GraduationCap,
   Plane,
   Leaf
@@ -20,56 +20,56 @@ const industries = [
     icon: Landmark,
     name: "Financial Services",
     description: "Secure, compliant solutions for banks, insurance, and fintech companies.",
-    stats: "50+ Financial clients",
+    stats: "5+ Financial clients",
     color: "from-blue-500/20 to-cyan-500/20",
   },
   {
     icon: HeartPulse,
     name: "Healthcare",
     description: "HIPAA-compliant systems that improve patient care and operational efficiency.",
-    stats: "30+ Healthcare projects",
+    stats: "10+ Healthcare projects",
     color: "from-red-500/20 to-pink-500/20",
   },
   {
     icon: ShoppingCart,
     name: "Retail & E-commerce",
     description: "Scalable platforms that drive sales and enhance customer experience.",
-    stats: "100+ Retail solutions",
+    stats: "20+ Retail solutions",
     color: "from-orange-500/20 to-yellow-500/20",
   },
   {
     icon: Factory,
     name: "Manufacturing",
     description: "IoT and automation solutions for smart manufacturing operations.",
-    stats: "40+ Manufacturing clients",
+    stats: "10+ Manufacturing clients",
     color: "from-gray-500/20 to-slate-500/20",
   },
   {
     icon: Building2,
     name: "Real Estate",
     description: "PropTech solutions for property management and real estate transactions.",
-    stats: "25+ PropTech projects",
+    stats: "15+ PropTech projects",
     color: "from-green-500/20 to-emerald-500/20",
   },
   {
     icon: GraduationCap,
     name: "Education",
     description: "EdTech platforms that transform learning experiences.",
-    stats: "35+ Educational institutions",
+    stats: "30+ Educational institutions",
     color: "from-purple-500/20 to-violet-500/20",
   },
   {
     icon: Plane,
     name: "Travel & Hospitality",
     description: "Booking systems and guest experience platforms for the travel industry.",
-    stats: "20+ Travel clients",
+    stats: "30+ Travel clients",
     color: "from-sky-500/20 to-blue-500/20",
   },
   {
     icon: Leaf,
     name: "Energy & Sustainability",
     description: "Green technology solutions for sustainable operations.",
-    stats: "15+ Energy projects",
+    stats: "5+ Energy projects",
     color: "from-lime-500/20 to-green-500/20",
   },
 ];
@@ -121,9 +121,21 @@ export default function Industries() {
           </MotionSection>
           <StaggerGrid className="grid gap-8 md:grid-cols-3">
             {[
-              { value: "10+", label: "Years Experience", desc: "A decade of serving diverse industries" },
-              { value: "8", label: "Industries Served", desc: "Deep expertise across sectors" },
-              { value: "500+", label: "Projects Delivered", desc: "Proven track record of success" },
+              {
+                value: "2+",
+                label: "Years of Growth",
+                desc: "Building capabilities since 2024 as EthiData & Technologies"
+              },
+              {
+                value: "10+",
+                label: "Technology Verticals",
+                desc: "Cross-sector expertise spanning fintech, travel, and SaaS"
+              },
+              {
+                value: "100+",
+                label: "Solutions Delivered",
+                desc: "Real-world system deployments and client outcomes"
+              }
             ].map((stat, index) => (
               <StaggerItem key={index}>
                 <MotionCard>

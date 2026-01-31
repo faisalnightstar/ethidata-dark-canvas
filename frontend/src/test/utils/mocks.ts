@@ -14,7 +14,7 @@ export const mockServices = [
 ];
 
 export const mockStats = [
-  { value: "500+", label: "Projects Delivered" },
+  { value: "100+", label: "Projects Delivered" },
   { value: "98%", label: "Client Satisfaction" },
   { value: "150+", label: "Team Members" },
   { value: "12+", label: "Years Experience" },

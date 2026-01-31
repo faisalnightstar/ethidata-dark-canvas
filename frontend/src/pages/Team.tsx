@@ -8,30 +8,67 @@ import { Linkedin, Twitter, Mail } from "lucide-react";
 
 const departments = ["All", "Leadership", "Engineering", "Design", "Operations", "Sales"];
 
-const teamMembers = [
-  { name: "Alexandra Reynolds", role: "Chief Executive Officer", department: "Leadership" },
-  { name: "Marcus Chen", role: "Chief Technology Officer", department: "Leadership" },
-  { name: "Sarah Mitchell", role: "Chief Operations Officer", department: "Leadership" },
-  { name: "David Park", role: "VP of Engineering", department: "Leadership" },
-  { name: "Jennifer Wu", role: "VP of Sales", department: "Sales" },
-  { name: "Michael Torres", role: "Head of Design", department: "Design" },
-  { name: "Emily Watson", role: "Principal Engineer", department: "Engineering" },
-  { name: "James Rodriguez", role: "Senior Engineer", department: "Engineering" },
-  { name: "Lisa Chang", role: "Senior Designer", department: "Design" },
-  { name: "Robert Kim", role: "DevOps Lead", department: "Engineering" },
-  { name: "Amanda Foster", role: "Operations Manager", department: "Operations" },
-  { name: "Chris Anderson", role: "Account Executive", department: "Sales" },
+const teamMembers = [{
+  name: "Atharv Chaturvedi",
+  role: "Chief Executive Officer",
+  department: "Leadership",
+  bio: "Atharv oversees the strategic direction and operational leadership of EthiData & Technologies. With experience driving digital-first initiatives and delivering organizational scale, he focuses on product strategy, business growth, and building high-performance teams. His leadership centers on disciplined execution, customer-centric innovation, and long-term enterprise value creation.",
+  quote: "Strong companies are built on disciplined leadership, clear vision, and the ability to execute with intent.",
+  image: "/images/teams/atharv.png",
+  linkedin: "https://www.linkedin.com/in/atharv-chaturvedi-34b501299/",
+  x: "https://x.com",
+  mail: "atharv@ethicodes.com"
+},
+{
+  name: "Abu Faisal",
+  role: "Director & Chief Technology Officer",
+  department: "Leadership",
+  bio: "Faisal is a technology strategist with deep expertise in engineering high-performance digital systems. As the co-founder of EthiData & Technologies, he has led mission-critical architecture decisions, scaled infrastructure, and driven innovation across web, mobile, and cloud ecosystems. His focus is on operational excellence, product velocity, and building resilient technology foundations that enable business growth.",
+  quote: "Technology is not built on guesswork. It’s built on clarity, precision, and uncompromising execution.",
+  image: "/images/teams/faisal.jpeg",
+  linkedin: "https://www.linkedin.com/in/faisalnightstar/",
+  x: "https://x.com/abufaisal_dev",
+  mail: "mailto:abufaisal@ethicodes.com"
+},
+
+{ name: "Saif Farhan", role: "Chief Operations Officer", department: "Leadership", image: "/images/teams/farhan.png" },
+{ name: "Kartikey Chaturvedi", role: "VP of Engineering", department: "Leadership", image: "/images/teams/kartikey.png" },
+{ name: "Saif Farhan", role: "VP of Sales", department: "Sales" },
+{ name: "Michael Torres", role: "Head of Design", department: "Design" },
+{ name: "Emily Watson", role: "Principal Engineer", department: "Engineering" },
+{ name: "Aliya Tabassum", role: "Senior Engineer", department: "Engineering", image: "/images/teams/aliya.jpeg" },
+{ name: "Lisa Chang", role: "Senior Designer", department: "Design" },
+{ name: "Robert Kim", role: "DevOps Lead", department: "Engineering" },
+{ name: "Amanda Foster", role: "Operations Manager", department: "Operations" },
+{ name: "Chris Anderson", role: "Account Executive", department: "Sales" },
 ];
 
-const leadershipSpotlight = {
-  name: "Alexandra Reynolds",
-  role: "Chief Executive Officer",
-  bio: "Alexandra brings over 20 years of technology leadership experience. Before founding EthiData, she held executive positions at leading tech companies and was instrumental in driving multiple successful digital transformations.",
-  quote: "Technology is only as powerful as the people who wield it. At EthiData, we believe in empowering both.",
-};
+const leadershipSpotlights = [
+  {
+    name: "Abu Faisal",
+    role: "Director & Chief Technology Officer",
+    bio: "Faisal is a technology strategist with deep expertise in engineering high-performance digital systems. As the co-founder of EthiData & Technologies, he has led mission-critical architecture decisions, scaled infrastructure, and driven innovation across web, mobile, and cloud ecosystems. His focus is on operational excellence, product velocity, and building resilient technology foundations that enable business growth.",
+    quote: "Technology is not built on guesswork. It’s built on clarity, precision, and uncompromising execution.",
+    image: "/images/teams/faisal.jpeg",
+    linkedin: "https://www.linkedin.com/in/faisalnightstar/",
+    x: "https://x.com/abufaisal_dev",
+    mail: "mailto:abufaisal@ethicodes.com"
+  },
+  {
+    name: "Atharv Chaturvedi",
+    role: "Chief Executive Officer",
+    bio: "Atharv oversees the strategic direction and operational leadership of EthiData & Technologies. With experience driving digital-first initiatives and delivering organizational scale, he focuses on product strategy, business growth, and building high-performance teams. His leadership centers on disciplined execution, customer-centric innovation, and long-term enterprise value creation.",
+    quote: "Strong companies are built on disciplined leadership, clear vision, and the ability to execute with intent.",
+    image: "/images/teams/atharv.png",
+    linkedin: "https://www.linkedin.com/in/atharv-chaturvedi-34b501299/",
+    x: "https://x.com",
+    mail: "atharv@ethicodes.com"
+  }
+];
 
 export default function Team() {
   const [activeFilter, setActiveFilter] = useState("All");
+  console.log("team member", teamMembers[0].image)
 
   const filteredMembers = activeFilter === "All"
     ? teamMembers
@@ -52,32 +89,51 @@ export default function Team() {
             eyebrow="Leadership Spotlight"
             title="Guided by Vision"
           />
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <GlassCard className="p-0 overflow-hidden" glow>
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                <span className="text-8xl font-bold gradient-text">AR</span>
+          {leadershipSpotlights.map((leadershipSpotlight, index) => {
+            return (
+              <div className="grid gap-12 lg:grid-cols-2 lg:items-center" key={index}>
+                <GlassCard className="p-0 overflow-hidden" glow>
+                  <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <img
+                      src={leadershipSpotlight.image}
+                      alt={leadershipSpotlight.name}
+                      className="text-8xl font-bold gradient-text"
+                    />
+                  </div>
+                </GlassCard>
+
+                <div>
+                  <h3 className="text-3xl font-bold text-foreground">
+                    {leadershipSpotlight.name}
+                  </h3>
+
+                  <p className="mt-2 text-lg text-primary">
+                    {leadershipSpotlight.role}
+                  </p>
+
+                  <p className="mt-6 text-muted-foreground">
+                    {leadershipSpotlight.bio}
+                  </p>
+
+                  <blockquote className="mt-6 border-l-2 border-primary pl-4 italic text-muted-foreground">
+                    "{leadershipSpotlight.quote}"
+                  </blockquote>
+
+                  <div className="mt-6 flex gap-4">
+                    <a href={leadershipSpotlight.linkedin} className="text-muted-foreground hover:text-primary transition-colors">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                    <a href={leadershipSpotlight.x} className="text-muted-foreground hover:text-primary transition-colors">
+                      <Twitter className="h-5 w-5" />
+                    </a>
+                    <a href={leadershipSpotlight.mail} className="text-muted-foreground hover:text-primary transition-colors">
+                      <Mail className="h-5 w-5" />
+                    </a>
+                  </div>
+                </div>
               </div>
-            </GlassCard>
-            <div>
-              <h3 className="text-3xl font-bold text-foreground">{leadershipSpotlight.name}</h3>
-              <p className="mt-2 text-lg text-primary">{leadershipSpotlight.role}</p>
-              <p className="mt-6 text-muted-foreground">{leadershipSpotlight.bio}</p>
-              <blockquote className="mt-6 border-l-2 border-primary pl-4 italic text-muted-foreground">
-                "{leadershipSpotlight.quote}"
-              </blockquote>
-              <div className="mt-6 flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Mail className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
@@ -115,7 +171,9 @@ export default function Team() {
                 <GlassCard className="relative overflow-hidden">
                   <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full border-2 border-white/10 bg-gradient-to-br from-primary/20 to-secondary/20 transition-all group-hover:border-primary/50 group-hover:shadow-glow-sm">
                     <div className="flex h-full w-full items-center justify-center text-xl font-bold text-primary">
-                      {member.name.split(' ').map(n => n[0]).join('')}
+
+                      <img src={member?.image} alt={member.name.split(' ').map(n => n[0]).join('')} />
+
                     </div>
                   </div>
                   <div className="text-center">
@@ -127,13 +185,13 @@ export default function Team() {
                   </div>
                   {/* Hover overlay */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 bg-background/90 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="#" className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
+                    <a href={member.linkedin} className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
                       <Linkedin className="h-5 w-5" />
                     </a>
-                    <a href="#" className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
+                    <a href={member.x} className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
                       <Twitter className="h-5 w-5" />
                     </a>
-                    <a href="#" className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
+                    <a href={member.mail} className="rounded-full bg-white/10 p-2 hover:bg-primary/20 hover:text-primary">
                       <Mail className="h-5 w-5" />
                     </a>
                   </div>

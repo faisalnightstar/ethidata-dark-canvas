@@ -16,7 +16,7 @@ const caseStudyData = {
     { value: "40%", label: "Cost Reduction" },
     { value: "99.99%", label: "Uptime Achieved" },
     { value: "10x", label: "Faster Deployments" },
-    { value: "500+", label: "Apps Migrated" },
+    { value: "100+", label: "Apps Migrated" },
   ],
   techStack: ["AWS", "Kubernetes", "Terraform", "Docker", "Jenkins", "Datadog"],
   testimonial: {

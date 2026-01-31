@@ -7,18 +7,17 @@ import { Target, Eye, Heart, Users, Lightbulb, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const stats = [
-  { value: "2012", label: "Year Founded" },
-  { value: "150+", label: "Team Members" },
-  { value: "500+", label: "Projects Completed" },
-  { value: "50+", label: "Countries Served" },
+  { value: "2024", label: "Year Founded" },
+  { value: "20+", label: "Team Members" },
+  { value: "100+", label: "Projects Completed" },
+  { value: "10+", label: "Countries Served" },
 ];
 
 const timeline = [
-  { year: "2012", title: "Founded", description: "EthiData established in San Francisco" },
-  { year: "2015", title: "Global Expansion", description: "Opened offices in London and Bangalore, IN" },
-  { year: "2018", title: "AI Division", description: "Launched dedicated AI & ML practice" },
-  { year: "2021", title: "500th Project", description: "Celebrated 500th successful project delivery" },
-  { year: "2024", title: "Today", description: "Leading enterprise technology innovation" },
+  { year: "2024", title: "Founded", description: "EthiData & Technologies established in Greater Noida" },
+  { year: "2025", title: "AI Division", description: "Launched dedicated AI & ML practice" },
+  { year: "2025", title: "100th Project", description: "Celebrated 100th successful project delivery" },
+  { year: "2026", title: "Today", description: "Leading enterprise technology innovation" },
 ];
 
 const values = [
@@ -29,10 +28,10 @@ const values = [
 ];
 
 const leaders = [
-  { name: "Alexandra Reynolds", role: "Chief Executive Officer" },
-  { name: "Marcus Chen", role: "Chief Technology Officer" },
-  { name: "Sarah Mitchell", role: "Chief Operations Officer" },
-  { name: "David Park", role: "VP of Engineering" },
+  { name: "Atharv Chaturvedi", role: "Chief Executive Officer", image: "/images/teams/atharv.png" },
+  { name: "Abu Faisal", role: "Chief Technology Officer", image: "/images/teams/faisal.jpeg" },
+  { name: "Saif Farhan", role: "Chief Operations Officer", image: "/images/teams/farhan.png" },
+  { name: "Kartikey Chaturvedi", role: "VP of Engineering", image: "/images/teams/kartikey.png" },
 ];
 
 export default function About() {
