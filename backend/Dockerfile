@@ -21,6 +21,9 @@ RUN npm run build
 FROM node:20-alpine AS prod
 WORKDIR /app
 
+# Install curl for healthcheck
+RUN apk add --no-cache curl
+
 # Copy only prod deps
 COPY package*.json ./
 RUN npm ci --omit=dev
@@ -28,8 +31,12 @@ RUN npm ci --omit=dev
 # Copy built final output from stage 1
 COPY --from=build /app/dist ./dist
 
-# Set a non-root user (security)
-RUN addgroup -S nodegroup && adduser -S nodeuser -G nodegroup
+# Create uploads folder & fix permissions
+RUN mkdir -p /app/uploads \
+    && addgroup -S nodegroup \
+    && adduser -S nodeuser -G nodegroup \
+    && chown -R nodeuser:nodegroup /app/uploads
+
 USER nodeuser
 
 EXPOSE 5001
