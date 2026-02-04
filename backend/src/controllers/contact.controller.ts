@@ -10,13 +10,14 @@ export const submitContact = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { name, email, company, subject, message } = req.body;
+    const { name, email, phone, company, subject, message } = req.body;
     console.log("req.body", req.body);
 
     // Create contact submission
     const contact = await Contact.create({
       name,
       email,
+      phone,
       company,
       subject,
       message,
@@ -39,7 +40,7 @@ export const submitContact = async (
       message,
     });
     // You can configure a team email address in env
-    // sendEmail({ to: 'team@ethidata.com', ...teamEmail });
+    sendEmail({ to: 'team@ethidata.com', ...teamEmail });
 
     res.status(201).json({
       success: true,

@@ -2,35 +2,60 @@ import { Layout } from "@/components/layout";
 import { PageHeader, SectionHeader } from "@/components/ui/section-header";
 import { GlassCard, JobCard } from "@/components/ui/glass-card";
 import { CTABanner } from "@/components/ui/cta-banner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Search, MapPin, Briefcase } from "lucide-react";
 
-const departments = ["All", "Engineering", "Design", "AI & ML", "DevOps", "Sales", "Operations"];
-const locations = ["All Locations", "Remote", "Greater Noida, IN", "Noida, IN", "Dubai, UAE", "Bangalore, IN"];
-
-const jobs = [
-  { title: "Senior Software Engineer", department: "Engineering", location: "Remote", type: "Full-time", deadline: "Feb 28, 2024" },
-  { title: "Cloud Architect", department: "Engineering", location: "Greater Noida, IN", type: "Full-time", deadline: "Mar 15, 2024" },
-  { title: "Product Designer", department: "Design", location: "Remote", type: "Full-time", deadline: "Mar 1, 2024" },
-  { title: "Data Scientist", department: "AI & ML", location: "Remote", type: "Full-time", deadline: "Mar 10, 2024" },
-  { title: "DevOps Engineer", department: "DevOps", location: "Noida, IN", type: "Full-time", deadline: "Feb 25, 2024" },
-  { title: "ML Engineer", department: "AI & ML", location: "Remote", type: "Full-time", deadline: "Mar 20, 2024" },
-  { title: "UX Researcher", department: "Design", location: "Greater Noida, IN", type: "Full-time", deadline: "Mar 5, 2024" },
-  { title: "Account Executive", department: "Sales", location: "Noida, IN", type: "Full-time", deadline: "Feb 20, 2024" },
-  { title: "Site Reliability Engineer", department: "DevOps", location: "Remote", type: "Full-time", deadline: "Mar 12, 2024" },
-  { title: "Frontend Engineer", department: "Engineering", location: "Dubai, UAE", type: "Full-time", deadline: "Mar 8, 2024" },
-  { title: "Operations Manager", department: "Operations", location: "Bangalore, IN", type: "Full-time", deadline: "Mar 15, 2024" },
-  { title: "Backend Engineer", department: "Engineering", location: "Remote", type: "Full-time", deadline: "Mar 1, 2024" },
-];
+type Job = {
+  _id: string;
+  title: string;
+  slug: string;
+  department: string;
+  location: string;
+  type: string;
+  createdAt: string;
+};
 
 export default function Jobs() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeDepartment, setActiveDepartment] = useState("All");
   const [activeLocation, setActiveLocation] = useState("All Locations");
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [departments, setDepartments] = useState<string[]>(["All"]);
+  const [locations, setLocations] = useState<string[]>(["All Locations"]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const filteredJobs = jobs.filter(job => {
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/jobs`);
+
+        if (response.data?.success) {
+          const apiJobs: Job[] = response.data.data.jobs || [];
+          const apiDepartments: string[] = response.data.data.filters?.departments || [];
+          const apiLocations: string[] = response.data.data.filters?.locations || [];
+
+          setJobs(apiJobs);
+          setDepartments(["All", ...apiDepartments]);
+          setLocations(["All Locations", ...apiLocations]);
+        } else {
+          toast.error("Failed to load jobs. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        toast.error("Something went wrong while loading jobs.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  const filteredJobs = jobs.filter((job) => {
     const matchesDepartment = activeDepartment === "All" || job.department === activeDepartment;
     const matchesLocation = activeLocation === "All Locations" || job.location === activeLocation;
     const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -111,13 +136,15 @@ export default function Jobs() {
 
           {/* Results count */}
           <p className="text-center text-muted-foreground mb-8">
-            {filteredJobs.length} position{filteredJobs.length !== 1 ? 's' : ''} found
+            {isLoading
+              ? "Loading positions..."
+              : `${filteredJobs.length} position${filteredJobs.length !== 1 ? "s" : ""} found`}
           </p>
 
           {/* Job Listings */}
           <div className="space-y-4">
-            {filteredJobs.map((job, index) => (
-              <Link to={`/jobs/${job.title.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
+            {filteredJobs.map((job) => (
+              <Link to={`/jobs/${job.slug || job.title.toLowerCase().replace(/\s+/g, "-")}`} key={job._id}>
                 <GlassCard className="group">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex-1">
@@ -134,7 +161,7 @@ export default function Jobs() {
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-xs text-muted-foreground">
-                        Apply by {job.deadline}
+                        Posted on {new Date(job.createdAt).toLocaleDateString()}
                       </span>
                       <div className="btn-glow rounded-lg px-4 py-2 text-sm font-semibold text-primary-foreground">
                         Apply
