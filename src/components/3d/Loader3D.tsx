@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 // @ts-nocheck - React Three Fiber JSX elements are not recognized by TypeScript
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Environment } from '@react-three/drei';
 import * as THREE from 'three';
-import gsap from 'gsap';
 
 // Extend Three.js elements for R3F
 import '@react-three/fiber';
@@ -94,43 +93,67 @@ interface Loader3DProps {
 
 export function Loader3D({ onComplete, duration = 2500 }: Loader3DProps) {
   const [progress, setProgress] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+  const [opacity, setOpacity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef({ value: 0 });
+  const startTimeRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number>();
+  
+  const animate = useCallback((timestamp: number) => {
+    if (startTimeRef.current === null) {
+      startTimeRef.current = timestamp;
+    }
+    
+    const elapsed = timestamp - startTimeRef.current;
+    const rawProgress = Math.min(elapsed / duration, 1);
+    
+    // Ease in-out function
+    const easeInOut = (t: number) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const easedProgress = easeInOut(rawProgress);
+    
+    setProgress(Math.round(easedProgress * 100));
+    
+    if (rawProgress < 1) {
+      animationFrameRef.current = requestAnimationFrame(animate);
+    } else {
+      // Fade out
+      let fadeStart: number | null = null;
+      const fadeOut = (fadeTimestamp: number) => {
+        if (fadeStart === null) fadeStart = fadeTimestamp;
+        const fadeElapsed = fadeTimestamp - fadeStart;
+        const fadeProgress = Math.min(fadeElapsed / 500, 1);
+        
+        setOpacity(1 - fadeProgress);
+        
+        if (fadeProgress < 1) {
+          requestAnimationFrame(fadeOut);
+        } else {
+          onComplete?.();
+        }
+      };
+      requestAnimationFrame(fadeOut);
+    }
+  }, [duration, onComplete]);
   
   useEffect(() => {
-    // Animate progress
-    gsap.to(progressRef.current, {
-      value: 100,
-      duration: duration / 1000,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-        setProgress(Math.round(progressRef.current.value));
-      },
-      onComplete: () => {
-        setIsComplete(true);
-        
-        // Fade out animation
-        if (containerRef.current) {
-          gsap.to(containerRef.current, {
-            opacity: 0,
-            scale: 1.1,
-            duration: 0.5,
-            ease: 'power2.in',
-            onComplete: () => {
-              onComplete?.();
-            }
-          });
-        }
+    animationFrameRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
-    });
-  }, [duration, onComplete]);
+    };
+  }, [animate]);
   
   return (
     <div
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-      style={{ backgroundColor: 'hsl(var(--background))' }}
+      style={{ 
+        backgroundColor: 'hsl(var(--background))',
+        opacity,
+        transform: `scale(${1 + (1 - opacity) * 0.1})`,
+        transition: 'transform 0.1s ease-out'
+      }}
     >
       <div className="relative h-[300px] w-[300px] md:h-[400px] md:w-[400px]">
         <Canvas
