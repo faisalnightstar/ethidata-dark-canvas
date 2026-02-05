@@ -1,12 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
 
 /* EthiData & Technologies - Dark Mode Design System
    Primary: Neon Cyan (#00E6FB) 
    Secondary: Neon Green (#00FF9F)
    All colors in HSL format
 */
+
+@theme {
+  /* Map your CSS variables to Tailwind utility names */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-border: hsl(var(--border));
+  --color-card: hsl(var(--card));
+  /* Add any other variables you use with @apply here */
+}
+
 
 @layer base {
   :root {
