@@ -2,6 +2,18 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PillNav } from "@/components/3d/PillNav";
+import "@/components/3d/PillNav.css";
+
+const pillNavItems = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/case-studies" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -53,7 +65,28 @@ const navigation = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [usePillNav] = useState(true);
 
+  // Pill Nav Mode (default)
+  if (usePillNav) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="flex justify-center">
+          <PillNav
+            logo="/brand/edt-logo-nobg.png"
+            logoAlt="EDT Logo"
+            items={pillNavItems}
+            baseColor="hsl(var(--surface-1) / 0.9)"
+            pillColor="hsl(var(--surface-2))"
+            hoveredPillTextColor="hsl(var(--background))"
+            pillTextColor="hsl(var(--foreground))"
+          />
+        </div>
+      </header>
+    );
+  }
+
+  // Traditional Nav Mode (fallback)
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
       <nav className="container-custom">
